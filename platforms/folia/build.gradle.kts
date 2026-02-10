@@ -1,5 +1,6 @@
 plugins {
     `java-library`
+    id("com.gradleup.shadow")
 }
 
 description = "Chat adapter for Folia"
