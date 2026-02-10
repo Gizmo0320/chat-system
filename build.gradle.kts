@@ -1,5 +1,6 @@
 plugins {
     base
+    id("com.gradleup.shadow") version "8.3.5" apply false
 }
 
 allprojects {
@@ -41,6 +42,25 @@ subprojects {
         tasks.withType<AbstractArchiveTask>().configureEach {
             isPreserveFileTimestamps = false
             isReproducibleFileOrder = true
+        }
+    }
+
+    if (path.startsWith(":platforms:")) {
+        plugins.withId("com.gradleup.shadow") {
+            val jarTask = tasks.named<Jar>("jar") {
+                archiveClassifier.set("thin")
+            }
+
+            tasks.named<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowJar") {
+                archiveBaseName.set(jarTask.flatMap { it.archiveBaseName })
+                archiveClassifier.set("")
+                configurations = listOf(project.configurations.getByName("runtimeClasspath"))
+                mergeServiceFiles()
+            }
+
+            tasks.named("assemble") {
+                dependsOn(tasks.named("shadowJar"))
+            }
         }
     }
 }

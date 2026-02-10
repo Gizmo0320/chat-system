@@ -23,6 +23,14 @@ Run:
 
 - `./gradlew build` (or `gradle build` if wrapper is unavailable)
 - `./gradlew :core:test`
+- `./gradlew :platforms:paper:shadowJar` (replace `paper` with another platform to build a fat JAR)
+
+Each platform module now publishes:
+
+- a **thin JAR** via `jar` (classifier: `thin`)
+- a **fat JAR** via `shadowJar` (no classifier, includes `:core` and runtime dependencies)
+
+The fat JAR bundles core features such as configuration loading, formatting, moderation, and Redis relay classes (`com.example.chatsystem.redis.*`).
 
 ## Core architecture
 
