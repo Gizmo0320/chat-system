@@ -1,0 +1,32 @@
+plugins {
+    `java-library`
+}
+
+description = "Chat adapter for Fabric"
+
+repositories {
+    maven("https://maven.fabricmc.net/")
+    maven("https://maven.terraformersmc.com/")
+}
+
+tasks.jar {
+    archiveBaseName.set("chat-system-fabric")
+    manifest {
+        attributes(
+            "Implementation-Title" to project.name,
+            "Implementation-Version" to project.version
+        )
+    }
+}
+
+dependencies {
+    implementation(project(":core"))
+    compileOnly("org.jetbrains:annotations:24.1.0")
+
+    // Platform APIs
+    compileOnly("net.fabricmc:fabric-loader:0.15.11")
+    compileOnly("net.fabricmc.fabric-api:fabric-api:0.100.8+1.21")
+
+    testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
+    testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.10.2")
+}

@@ -1,0 +1,16 @@
+modLoader="javafml"
+loaderVersion="[1,)"
+license="All Rights Reserved"
+
+[[mods]]
+modId="chatsystem"
+version="1.0.0"
+displayName="Chat System"
+description='''Shared chat system core for NeoForge.'''
+
+[[dependencies.chatsystem]]
+modId="neoforge"
+mandatory=true
+versionRange="[1,)"
+ordering="NONE"
+side="BOTH"

@@ -1,0 +1,17 @@
+{
+  "schemaVersion": 1,
+  "id": "chatsystem",
+  "version": "1.0.0",
+  "name": "Chat System",
+  "description": "Shared chat system core for Fabric.",
+  "authors": [
+    "Example"
+  ],
+  "license": "All Rights Reserved",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "com.example.chatsystem.platform.fabric.FabricChatBootstrap"
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "plugins": [
+    {
+      "id": "chatsystem",
+      "name": "Chat System",
+      "version": "1.0.0",
+      "main": "com.example.chatsystem.platform.sponge.SpongeChatBootstrap",
+      "description": "Shared chat system core for Sponge."
+    }
+  ]
+}
