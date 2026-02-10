@@ -1,0 +1,65 @@
+channels:
+  - id: global
+    displayName: Global
+    permission: chatsystem.channel.global
+    format: "&7[&a{channel}&7] &f{player}&7: &r{message}"
+    formatPreset: global-default
+    muted: false
+    relayMode: REDIS
+    linkedChannels:
+      - staff
+  - id: staff
+    displayName: Staff
+    permission: chatsystem.channel.staff
+    format: "&7[&c{channel}&7] &f{player}&7: &r{message}"
+    formatPreset: staff-default
+    muted: false
+    relayMode: LOCAL
+    linkedChannels:
+      - global
+
+formatPresets:
+  global-default: "&7[&a{channel}&7] &f{player}&7: &r{message}"
+  staff-default: "&7[&c{channel}&7] &f{player}&7: &r{message}"
+
+filters:
+  profanity:
+    enabled: true
+    bannedWords:
+      - badword1
+      - badword2
+
+moderation:
+  slowModeSecondsByChannel:
+    global: 0
+    staff: 0
+  mutedPlayers: []
+  persistence:
+    enabled: true
+    file: data/moderation-state.properties
+
+history:
+  backend: file
+  maxEntries: 2000
+  file: data/chat-history.log
+  cipher:
+    enabled: false
+    secret: "replace-me"
+
+observability:
+  metrics:
+    enabled: true
+  audit:
+    enabled: true
+
+admin:
+  commands:
+    enabled: true
+
+redis:
+  enabled: false
+  channel: chatsystem:relay
+  host: 127.0.0.1
+  port: 6379
+  password: ""
+  ssl: false
